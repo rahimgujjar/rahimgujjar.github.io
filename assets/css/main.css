@@ -998,16 +998,18 @@ html[data-theme="dark"] .project-item-featured:hover {
   font-size: 0.85em; 
   color: var(--link-color);
   border: 1px solid var(--border-color);
+  word-wrap: break-word; /* Prevents text from breaking the page width */
 }
 
 .post-content pre {
   background-color: var(--code-bg);
   padding: 1.5rem;
   border-radius: 8px;
-  overflow-x: auto;
   margin-bottom: 2rem;
   margin-top: 1.5rem;
   border: 1px solid var(--border-color);
+  max-width: 100%; /* Forces the box to stay inside the screen */
+  overflow-x: auto; /* Puts the scrollbar strictly INSIDE the code box, not on the page */
 }
 
 .post-content pre code {
@@ -1015,6 +1017,8 @@ html[data-theme="dark"] .project-item-featured:hover {
   padding: 0;
   border: none;
   color: var(--text-color);
+  word-wrap: normal;
+  white-space: pre;
 }
 
 .post-footer {
