@@ -4,21 +4,25 @@ layout: default
 
 <article class="post">
   <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <div class="post-meta-header">
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
-      <span style="margin: 0 0.5rem;">|</span>
-      <span>Status: Declassified</span>
+    <div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem; font-family: 'SF Mono', monospace; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--link-color);">
+      <span style="background-color: var(--code-bg); padding: 0.25rem 0.5rem; border: 1px solid var(--border-color);">[ STATUS: DECLASSIFIED ]</span>
+      <span style="background-color: var(--code-bg); padding: 0.25rem 0.5rem; border: 1px solid var(--border-color);">[ LOG: {{ page.date | date: "%Y.%m.%d" }} ]</span>
     </div>
+    
+    <h1 class="post-title">{{ page.title }}</h1>
   </header>
 
   <div class="post-content">
     {{ content }}
   </div>
 
-  <footer class="post-footer">
-    <a href="https://rahimgujjar.github.io/research/">
-      [_return_to_archive]
+  <footer class="post-footer" style="display: flex; justify-content: space-between; align-items: center;">
+    <a href="https://rahimgujjar.github.io/research/" style="display: flex; align-items: center; gap: 0.5rem; background-color: var(--code-bg); padding: 0.75rem 1.25rem; border: 1px solid var(--border-color); transition: all 0.2s ease;">
+      <span style="font-size: 1.2rem; line-height: 1;">←</span>
+      <span>Terminate Session & Return</span>
     </a>
+    <div style="font-family: 'SF Mono', monospace; font-size: 0.75rem; color: var(--text-secondary);">
+      // END_OF_REPORT
+    </div>
   </footer>
 </article>
