@@ -5,9 +5,31 @@ layout: default
 <article class="post">
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
-    <div class="post-meta-header">
-      <!-- Only pulls the standard date -->
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+    
+    <!-- DYNAMIC METADATA SECTION -->
+    <div class="post-meta-header" style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1rem; align-items: center;">
+      
+      <!-- 1. Custom Status Field (e.g., Declassified, Responsible Disclosure) -->
+      {% if page.status %}
+      <span style="font-family: 'SF Mono', 'Monaco', monospace; font-size: 0.85rem; color: var(--link-color); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+        [ STATUS: {{ page.status }} ]
+      </span>
+      {% endif %}
+
+      <!-- 2. Historical/Research Date Field (When it actually happened) -->
+      {% if page.research_date %}
+      <span style="font-family: 'SF Mono', 'Monaco', monospace; font-size: 0.85rem; color: var(--text-secondary);">
+        <strong>Research Concluded:</strong> {{ page.research_date }}
+      </span>
+      {% endif %}
+
+      <!-- 3. Standard Publish Date Field (When you uploaded it to the site) -->
+      {% if page.date %}
+      <span style="font-family: 'SF Mono', 'Monaco', monospace; font-size: 0.85rem; color: var(--text-secondary);">
+        <strong>Published:</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+      </span>
+      {% endif %}
+
     </div>
   </header>
 
@@ -15,25 +37,15 @@ layout: default
     {{ content }}
   </div>
 
-  <footer class="post-footer">
+  <footer class="post-footer" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
     <!-- Reusing your home screen CSS (.hero-links) for the buttons -->
-    <div class="hero-links" style="justify-content: space-between; width: 100%; margin-top: 0;">
+    <div class="hero-links" style="display: flex; justify-content: space-between; width: 100%; margin-top: 0;">
       
       <!-- Acts as a dynamic back button based on browser history -->
       <a href="javascript:history.back()">← Back</a>
       
       <!-- Static link to the archive -->
-      <a href="https://rahimgujjar.github.io/research/">View all research articles →</a>
-
-      <!-- Commented out Related Posts logic for future centralized implementation -->
-    <!--
-    <div class="related-posts">
-      {% assign max_related = 3 %}
-      {% assign min_common_tags = 1 %}
-      {% assign max_count = 0 %}
-      ... (Complex dynamic liquid logic requires the posts to exist in the same repo) ...
-    </div>
-    -->
+      <a href="https://rahimgujjar.github.io/research/">All Research Articles →</a>
       
     </div>
   </footer>
