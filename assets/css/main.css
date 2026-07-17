@@ -1,0 +1,903 @@
+/* ==========================================================================
+   1. CSS Variables & Theming (Custom Forensic Theme)
+   ========================================================================== */
+:root {
+  --bg-color: #f8f9fa; /* Slightly off-white for less glare */
+  --text-color: #111827;
+  --text-secondary: #4b5563;
+  --border-color: #e5e7eb;
+  --card-bg: #ffffff;
+  --header-bg: rgba(255, 255, 255, 0.9);
+  --link-color: #059669; /* Sharp Emerald Green */
+  --link-hover: #047857;
+  --code-bg: #f3f4f6;
+  --accent-glow: rgba(16, 185, 129, 0.15);
+  --shadow: rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme="dark"] {
+  --bg-color: #0f172a; /* Deep tech navy, not flat black */
+  --text-color: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --border-color: #1e293b;
+  --card-bg: #1e293b; /* Distinct card contrast */
+  --header-bg: rgba(15, 23, 42, 0.9);
+  --link-color: #38bdf8; /* Cyber Cyan */
+  --link-hover: #7dd3fc;
+  --code-bg: #0f172a;
+  --accent-glow: rgba(56, 189, 248, 0.15);
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dark"] body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* ==========================================================================
+   2. Global Reset & Base Styles
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* Using system-ui but prioritizing highly legible developer fonts (aydinnyunus) */
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.7;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+.wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ==========================================================================
+   3. Header & Navigation
+   ========================================================================== */
+.site-header {
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.75rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.site-header .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  gap: 1rem;
+}
+
+.site-title {
+  font-size: 1.65rem; /* Increased size */
+  font-weight: 700;   /* Made slightly bolder for better presence */
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  flex-shrink: 0;
+  white-space: nowrap;
+  letter-spacing: -0.02em; /* Tightens the letters slightly for a cleaner look */
+}
+
+.site-nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.site-nav a {
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem; /* Padding to create a clickable box */
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  position: relative;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.site-nav a:hover {
+  color: var(--text-color);
+  background-color: var(--code-bg);
+  border-color: var(--border-color);
+}
+
+/* New Active State: Inverts the color to make the current page instantly obvious */
+.site-nav a.active {
+  color: var(--bg-color);
+  background-color: var(--link-color);
+  border-color: var(--link-color);
+  font-weight: 600;
+  box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+/* Dynamic Theme Label */
+.theme-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.theme-label {
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  user-select: none;
+}
+
+#theme-status {
+  color: var(--link-color);
+  font-weight: 600;
+}
+
+.theme-toggle:hover {
+  background-color: var(--border-color);
+  border-color: var(--text-secondary);
+  transform: scale(1.05);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* --- THEME ICON CUSTOMIZATION --- */
+#theme-icon {
+  display: block;
+  line-height: 1;
+  font-size: 1.80rem; /* Increased size */
+  /* Added transform to the transition so it spins smoothly when toggled */
+  transition: color 0.3s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/*
+ * DYNAMIC ICON COLORS & TILT
+ * Uncomment the 'color' lines below to assign specific colors to the icons.
+ * The transform handles the tilt logic automatically.
+ */
+
+/* Light Mode (The Moon Icon) */
+html[data-theme="light"] #theme-icon {
+  color: #3b82f6; /* Example: Soft Blue for the Moon */
+  transform: rotate(-50deg); /* Tilts the moon upward like 🌙 */
+}
+
+/* Dark Mode (The Sun/Gear Icon) */
+html[data-theme="dark"] #theme-icon {
+  color: #eab308; /* Example: Cyber Yellow for the Sun */
+  transform: rotate(0deg); /* Keeps the sun perfectly straight */
+}
+
+/* ==========================================================================
+   4. Home Page (Hero Section)
+   ========================================================================== */
+.home {
+  padding: 4rem 0;
+}
+
+.hero {
+  text-align: center;
+  /* Reduced padding to 0, and added negative top margin to pull it up */
+  padding: 0 0 6rem;
+  margin-top: -3rem; /* Number increased from -1 to -3 to move higher */
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Homepage Profile Avatar */
+.hero-avatar {
+  display: block;
+  width: 140px; /* Increased from 130px to 140px (a perfect look, acc. to me) */
+  height: 140px; /* Increased from 130px to 140px (a perfect look, acc. to me) */
+  border-radius: 50% !important;
+  object-fit: cover;
+  overflow: hidden;
+  margin: 0 auto 1.5rem auto;
+  border: 3px solid var(--link-color);
+  box-shadow: 0 0 25px var(--accent-glow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 35px var(--accent-glow);
+}
+
+.hero-intro {
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  font-size: 1rem;
+  color: var(--link-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hero-intro::before {
+  content: "[ status: ";
+  color: var(--text-secondary);
+}
+
+.hero-intro::after {
+  content: " ]";
+  color: var(--text-secondary);
+}
+
+.hero-name {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.hero-description {
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--code-bg);
+  padding: 1.5rem;
+  border-left: 4px solid var(--link-color); /* Matches the card design language */
+  text-align: left; /* Aligns text like a system readout */
+}
+
+.hero-social {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.hero-social a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+.hero-social a:hover {
+  color: var(--link-color);
+  background-color: var(--border-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--shadow);
+}
+
+.hero-social a svg {
+  width: 20px;
+  height: 20px;
+}
+
+.hero-links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-links a {
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-links a:hover {
+  border-color: var(--link-color);
+  color: var(--link-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px 0px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   5. About Page
+   ========================================================================== */
+.about-page {
+  padding: 3rem 0 4rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-page h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: var(--text-color);
+  line-height: 1.2;
+}
+
+.about-page h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-top: 3.5rem;
+  margin-bottom: 1.25rem;
+  color: var(--text-color);
+  line-height: 1.3;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.about-page h2:first-of-type {
+  margin-top: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.about-page h2 code {
+  display: block; /* Changes from inline text to a full-width block */
+  background-color: #0f172a; /* Deep terminal navy, overrides light mode */
+  color: #38bdf8; /* Cyber Cyan */
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  font-size: 1.1rem;
+  padding: 1.25rem 1.5rem;
+  border-left: 4px solid #38bdf8; /* Sharp left accent */
+  border-radius: 0;
+  font-weight: 500;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+  margin-top: 1rem;
+}
+
+.about-page p {
+  color: var(--text-secondary);
+  line-height: 1.85;
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+}
+
+.about-page p:last-child {
+  margin-bottom: 0;
+}
+
+.about-page > p:first-of-type {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  margin-bottom: 1.75rem;
+}
+
+.about-page strong {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.about-page ul {
+  list-style: none;
+  padding-left: 0;
+  max-width: 100%;
+  margin-top: 1.5rem;
+}
+
+.about-page ul li {
+  color: var(--text-secondary);
+  line-height: 1.85;
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  padding-left: 3rem;
+  position: relative;
+  background-color: var(--card-bg);
+  border: none;
+  border-left: 4px solid var(--border-color); /* Forensic terminal style consistency */
+  border-radius: 0; /* Sharp edges */
+  box-shadow: 0 2px 4px var(--shadow);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about-page ul li:hover {
+  border-left-color: var(--link-color);
+  background-color: var(--bg-color);
+  transform: translateX(4px);
+  box-shadow: 4px 4px 15px var(--accent-glow);
+}
+
+/* Explicit terminal blink animation */
+@keyframes terminal-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.about-page ul li::before {
+  content: ">_";
+  color: var(--link-color);
+  font-weight: 600;
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  position: absolute;
+  left: 1rem;
+  font-size: 1rem;
+  animation: terminal-blink 1s step-end infinite; /* Now uses its own dedicated animation */
+}
+
+.about-page ul li strong {
+  color: var(--link-color);
+  font-weight: 600;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.95rem;
+  margin-right: 0.5rem;
+}
+
+/* ==========================================================================
+   6. Projects & Research Pages
+   ========================================================================== */
+.projects-page {
+  padding: 2rem 0 4rem;
+}
+
+.projects-page h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: var(--text-color);
+}
+
+.projects-list {
+  min-height: 300px;
+}
+
+.projects-intro {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  max-width: 700px;
+}
+
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.project-item {
+  padding: 1.75rem;
+  background-color: var(--card-bg);
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 2px 4px var(--shadow);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  /* --- CUSTOMIZABLE BORDER STRIPS (DEFAULT STATE) --- */
+  /* Use 'transparent' for hover-only strips, or 'var(--border-color)' for always-on */
+  border-left: 6px solid var(--border-color);
+  /* border-right: 6px solid transparent; */
+  border-bottom: 6px solid var(--border-color);
+  /* border-top: 6px solid transparent; */
+}
+
+.project-item:hover {
+  background-color: var(--bg-color);
+  transform: translateX(4px);
+  box-shadow: 4px 4px 15px var(--accent-glow);
+  outline: 1px solid var(--link-color);
+
+  /* --- CUSTOMIZABLE BORDER STRIPS (HOVER STATE) --- */
+  border-left-color: var(--link-color);
+  /* border-right-color: var(--link-color); */
+  border-bottom-color: var(--link-color);
+  /* border-top-color: var(--link-color); */
+}
+
+/* Focus Shift override: removes stroke from the parent card when the internal link is hovered */
+.project-item:has(.project-research-link:hover) {
+  outline: none;
+}
+
+.project-item-featured {
+  border-left-color: var(--link-color);
+  background-color: var(--accent-glow);
+
+  /* --- FEATURED CARD FIX (Prevents the 45-degree cut) --- */
+  /* If you enabled strips in the default block above, uncomment them here so they fill with color immediately */
+  /* border-right-color: var(--link-color); */
+  border-bottom-color: var(--link-color);
+  /* border-top-color: var(--link-color); */
+}
+
+.project-item-featured:hover {
+  border-left-color: var(--link-hover);
+  box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+html[data-theme="dark"] .project-item-featured {
+  border-left-color: var(--link-color);
+  background-color: var(--accent-glow);
+}
+
+html[data-theme="dark"] .project-item-featured:hover {
+  box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.project-title a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.project-title a:hover {
+  color: var(--link-color);
+}
+
+/* Make the entire card empty space clickable */
+.project-title a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Stretches link over empty card areas */
+}
+
+.project-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  position: relative;
+  z-index: 2;
+  /* This is the desired fix: It forces the invisible box to wrap tightly around the text line-by-line, freeing the empty space */
+  display: inline;
+}
+
+.project-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+  margin-top: 1rem; /* Restores the space lost by making the description inline */
+}
+
+/* Enhanced Star Metric Section */
+.project-stars {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-color); /* Solid border instead of dashed */
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  font-weight: bold;
+  color: var(--text-color);
+  font-size: 0.85rem;
+  position: relative;
+  z-index: 2;
+}
+
+.project-stars .star-icon {
+  color: var(--link-color); /* Forces the star to use accent color */
+  font-size: 1.15rem; /* Increases star size significantly */
+  line-height: 1;
+}
+
+/* Sharp, Rectangular Tags */
+.project-language,
+.project-tag {
+  padding: 0.35rem 0.6rem;
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0px; /* Sharp, rectangular terminal look */
+  font-size: 0.75rem;
+  color: var(--link-color);
+  font-weight: 600;
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace; /* Monospace tags */
+  text-transform: lowercase;
+  position: relative;
+  z-index: 2; /* Fix: Target z-index directly to the tags to keep them above the link */
+}
+
+/* ==========================================================================
+   7. Footer
+   ========================================================================== */
+.site-footer {
+  margin-top: 6rem;
+  padding: 3rem 0;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.footer-social-link:hover {
+  color: var(--link-color);
+  background-color: var(--border-color);
+  transform: translateY(-2px);
+}
+
+.footer-social-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================================================
+   8. Media Queries (Mobile Responsiveness)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 0 20px;
+  }
+
+  .site-header .wrapper {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .site-nav {
+    gap: 1rem;
+    font-size: 0.9rem;
+    order: 2;
+    width: 100%;
+  }
+
+  .header-actions {
+    order: 1;
+    margin-left: auto;
+  }
+
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    padding: 0.4rem;
+  }
+
+  .hero-name {
+    font-size: 2.5rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .hero-social {
+    gap: 1rem;
+  }
+
+  .hero-social a {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hero-social a svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hero-links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .about-page {
+    padding: 2rem 0 3rem;
+  }
+
+  .about-page h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-page h2 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .about-page h2 code {
+    font-size: 1.25rem;
+  }
+
+  .about-page ul li {
+    padding: 0.875rem 1rem;
+    padding-left: 2.25rem;
+    font-size: 0.95rem;
+  }
+
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-meta {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 2rem 0 4rem;
+  }
+
+  .hero-name {
+    font-size: 2rem;
+  }
+
+  .site-header .wrapper {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .site-title {
+    font-size: 1.1rem;
+  }
+
+  .site-nav {
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
+    padding: 0.3rem;
+  }
+}
+
+/* ==========================================================================
+   Internal Research Link Block (For Project Cards)
+   ========================================================================== */
+.project-research-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--code-bg);
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  position: relative;
+  z-index: 3;
+  transition: all 0.2s ease;
+  width: fit-content;
+
+  /* --- CUSTOMIZABLE BORDER STRIPS (INNER CARD) --- */
+  border-left: 3px solid var(--link-color);
+  /* border-right: 3px solid var(--link-color); */
+  border-bottom: 3px solid var(--link-color);
+  /* border-top: 3px solid var(--link-color); */
+}
+
+.project-research-link:hover {
+  background-color: var(--border-color);
+  transform: translateX(2px);
+  outline: 1px solid var(--link-color);
+
+  /* --- CUSTOMIZABLE BORDER STRIPS HOVER (INNER CARD) --- */
+  /* border-right-color: var(--link-color); */
+  border-bottom-color: var(--link-color);
+  /* border-top-color: var(--link-color); */
+}
+
+.project-research-link::before {
+  content: "[_doc]";
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  color: var(--link-color);
+  font-weight: 600;
+  font-size: 0.8rem;
+}

@@ -1,0 +1,14 @@
+title: Rahim Gujjar | InfoSec & Systems Analyst
+description: 3rd-Sem BSIT Std @ UOS. InfoSec & Systems Analyst, Digital Forensics & AI Automation, Orchestrator & Architect. Passionate about deconstructing complex Systems💣
+author: Rahim Gujjar
+url: https://rahimgujjar.github.io
+baseurl: ""
+default_image: "/favicon.png"
+
+plugins:
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
