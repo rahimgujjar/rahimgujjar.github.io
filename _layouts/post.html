@@ -4,31 +4,28 @@ layout: default
 
 <article class="post">
   <header class="post-header">
-    <div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem; font-family: 'SF Mono', monospace; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--link-color);">
-      <span style="background-color: var(--code-bg); padding: 0.25rem 0.5rem; border: 1px solid var(--border-color);">[ STATUS: DECLASSIFIED ]</span>
-      <span style="background-color: var(--code-bg); padding: 0.25rem 0.5rem; border: 1px solid var(--border-color);">[ LOG: {{ page.date | date: "%Y.%m.%d" }} ]</span>
-    </div>
-    
     <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta-header">
+      <!-- Only pulls the standard date -->
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+    </div>
   </header>
 
   <div class="post-content">
     {{ content }}
   </div>
 
-  <footer class="post-footer" style="display: flex; justify-content: space-between; align-items: center;">
-    <!-- Uses JavaScript to act exactly like the browser's back button -->
-    <a href="javascript:history.back()" style="display: flex; align-items: center; gap: 0.5rem; background-color: var(--code-bg); padding: 0.75rem 1.25rem; border: 1px solid var(--border-color); color: var(--link-color); text-decoration: none; transition: all 0.2s ease;">
-      <span style="font-size: 1.2rem; line-height: 1;">←</span>
-      <span style="font-family: 'SF Mono', monospace; font-weight: 600;">Return</span>
-    </a>
-    
-    <!-- Hardcoded link to the full archive -->
-    <a href="https://rahimgujjar.github.io/research/" style="font-family: 'SF Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; transition: color 0.2s ease;">
-      [ View_All_Research_Articles ] →
-    </a>
+  <footer class="post-footer">
+    <!-- Reusing your home screen CSS (.hero-links) for the buttons -->
+    <div class="hero-links" style="justify-content: space-between; width: 100%; margin-top: 0;">
+      
+      <!-- Acts as a dynamic back button based on browser history -->
+      <a href="javascript:history.back()">← Back</a>
+      
+      <!-- Static link to the archive -->
+      <a href="https://rahimgujjar.github.io/research/">View all research articles →</a>
 
-    <!-- Commented out Related Posts logic for future centralized implementation -->
+      <!-- Commented out Related Posts logic for future centralized implementation -->
     <!--
     <div class="related-posts">
       {% assign max_related = 3 %}
@@ -37,5 +34,7 @@ layout: default
       ... (Complex dynamic liquid logic requires the posts to exist in the same repo) ...
     </div>
     -->
+      
+    </div>
   </footer>
 </article>
