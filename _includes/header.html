@@ -3,7 +3,7 @@
     <a class="site-title" href="/">Rahim Gujjar</a>
     <nav class="site-nav">
       <a href="https://rahimgujjar.github.io/" class="{% if page.url == '/' %}active{% endif %}">Home</a>
-      <a href="https://rahimgujjar.github.io/research/" class="{% if page.url == '/research/' %}active{% endif %}">Research Articles</a>
+      <a href="https://rahimgujjar.github.io/research/" class="{% if page.url == '/research/' or page.layout == 'post' %}active{% endif %}">Research Articles</a>
       <a href="https://rahimgujjar.github.io/projects/" class="{% if page.url == '/projects/' %}active{% endif %}">Projects</a>
       <a href="https://rahimgujjar.github.io/about/" class="{% if page.url == '/about/' %}active{% endif %}">About</a>
     </nav>
