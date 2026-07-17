@@ -3,7 +3,7 @@ description: 3rd-Sem BSIT Std @ UOS. InfoSec & Systems Analyst, Digital Forensic
 author: Rahim Gujjar
 url: https://rahimgujjar.github.io
 baseurl: ""
-default_image: "https://raw.githubusercontent.com/rahimgujjar/rahimgujjar.github.io/main/favicon.png"
+default_image: "https://rahimgujjar.github.io/favicon.png"
 
 plugins:
   - jekyll-sitemap
