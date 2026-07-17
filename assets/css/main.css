@@ -858,7 +858,7 @@ html[data-theme="dark"] .project-item-featured:hover {
 }
 
 /* ==========================================================================
-   Internal Research Link Block (For Project Cards)
+   9. Internal Research Link Block (For Project Cards)
    ========================================================================== */
 .project-research-link {
   display: flex;
@@ -900,4 +900,133 @@ html[data-theme="dark"] .project-item-featured:hover {
   color: var(--link-color);
   font-weight: 600;
   font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   10. Post & Article Formatting (Markdown Rendering)
+   ========================================================================== */
+.post {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+}
+
+.post-header {
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.post-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.post-meta-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+}
+
+.post-content {
+  font-size: 1.05rem; 
+  line-height: 1.8; 
+  color: var(--text-color);
+}
+
+.post-content h2 {
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.875rem; 
+  font-weight: 700;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.post-content h3 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem; 
+  font-weight: 600;
+}
+
+.post-content p {
+  margin-bottom: 1.5rem; 
+}
+
+.post-content ul,
+.post-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 0.5rem;
+}
+
+.post-content li {
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+}
+
+.post-content blockquote {
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  border-left: 4px solid var(--link-color);
+  background-color: var(--code-bg);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.post-content a {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Code and Preformatted Text */
+.post-content code {
+  background-color: var(--code-bg);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  font-size: 0.85em; 
+  color: var(--link-color);
+  border: 1px solid var(--border-color);
+}
+
+.post-content pre {
+  background-color: var(--code-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.post-content pre code {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  color: var(--text-color);
+}
+
+.post-footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.post-footer a {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  transition: color 0.3s ease;
 }
