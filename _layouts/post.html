@@ -17,12 +17,25 @@ layout: default
   </div>
 
   <footer class="post-footer" style="display: flex; justify-content: space-between; align-items: center;">
-    <a href="https://rahimgujjar.github.io/research/" style="display: flex; align-items: center; gap: 0.5rem; background-color: var(--code-bg); padding: 0.75rem 1.25rem; border: 1px solid var(--border-color); transition: all 0.2s ease;">
+    <!-- Uses JavaScript to act exactly like the browser's back button -->
+    <a href="javascript:history.back()" style="display: flex; align-items: center; gap: 0.5rem; background-color: var(--code-bg); padding: 0.75rem 1.25rem; border: 1px solid var(--border-color); color: var(--link-color); text-decoration: none; transition: all 0.2s ease;">
       <span style="font-size: 1.2rem; line-height: 1;">←</span>
-      <span>Terminate Session & Return</span>
+      <span style="font-family: 'SF Mono', monospace; font-weight: 600;">Return</span>
     </a>
-    <div style="font-family: 'SF Mono', monospace; font-size: 0.75rem; color: var(--text-secondary);">
-      // END_OF_REPORT
+    
+    <!-- Hardcoded link to the full archive -->
+    <a href="https://rahimgujjar.github.io/research/" style="font-family: 'SF Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; transition: color 0.2s ease;">
+      [ View_All_Research_Articles ] →
+    </a>
+
+    <!-- Commented out Related Posts logic for future centralized implementation -->
+    <!--
+    <div class="related-posts">
+      {% assign max_related = 3 %}
+      {% assign min_common_tags = 1 %}
+      {% assign max_count = 0 %}
+      ... (Complex dynamic liquid logic requires the posts to exist in the same repo) ...
     </div>
+    -->
   </footer>
 </article>
