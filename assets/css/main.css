@@ -1034,3 +1034,21 @@ html[data-theme="dark"] .project-item-featured:hover {
   font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
   transition: color 0.3s ease;
 }
+
+/* Share Section Container */
+.post-share {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.share-label {
+  font-family: 'SF Mono', 'Monaco', monospace;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+}
