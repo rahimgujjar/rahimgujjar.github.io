@@ -7,26 +7,35 @@ layout: default
     <h1 class="post-title">{{ page.title }}</h1>
     
     <!-- DYNAMIC METADATA SECTION -->
-    <div class="post-meta-header" style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1rem; align-items: center;">
+    <!-- Reduced gap to 0.85rem to pull the text and pipes closer together for a cohesive line -->
+    <div class="post-meta-header" style="display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 1rem; align-items: center;">
       
-      <!-- 1. Custom Status Field (e.g., Declassified, Responsible Disclosure) -->
+      <!-- 1. Custom Status Field -->
       {% if page.status %}
-      <span style="font-family: 'SF Mono', 'Monaco', monospace; font-size: 0.85rem; color: var(--link-color); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
-        [ STATUS: {{ page.status }} ]
+      <span style="font-family: 'SF Mono', 'Monaco', monospace; font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">
+        [ <strong>STATUS:</strong> <span style="color: var(--link-color); font-weight: 600;">{{ page.status }}</span> ]
       </span>
       {% endif %}
 
-      <!-- 2. Historical/Research Date Field (When it actually happened) -->
+      <!-- 2. Historical/Research Date Field -->
       {% if page.research_date %}
+        <!-- Smart Pipe logic: Only show this pipe if the Status field exists before it -->
+        {% if page.status %}
+        <span style="color: var(--text-secondary); opacity: 0.5;">|</span>
+        {% endif %}
       <span style="font-family: 'SF Mono', 'Monaco', monospace; font-size: 0.85rem; color: var(--text-secondary);">
-        <strong>Research Concluded:</strong> {{ page.research_date }}
+        <strong>Research Concluded:</strong> <span style="color: var(--link-color); font-weight: 600;">{{ page.research_date }}</span>
       </span>
       {% endif %}
 
-      <!-- 3. Standard Publish Date Field (When you uploaded it to the site) -->
+      <!-- 3. Standard Publish Date Field -->
       {% if page.date %}
+        <!-- Smart Pipe logic: Only show this pipe if Status OR Research Date exists before it -->
+        {% if page.status or page.research_date %}
+        <span style="color: var(--text-secondary); opacity: 0.5;">|</span>
+        {% endif %}
       <span style="font-family: 'SF Mono', 'Monaco', monospace; font-size: 0.85rem; color: var(--text-secondary);">
-        <strong>Published:</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+        <strong>Published:</strong> <time datetime="{{ page.date | date_to_xmlschema }}" style="color: var(--link-color); font-weight: 600;">{{ page.date | date: "%-d %B %Y" }}</time>
       </span>
       {% endif %}
 
