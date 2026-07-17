@@ -1042,7 +1042,7 @@ html[data-theme="dark"] .project-item-featured:hover {
   align-items: center;
   gap: 1.5rem;
   margin-top: 4rem; /* Created more space above */
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
   margin-left: -3rem; /* This 'nudges' the whole centered block to the left */
 }
 
