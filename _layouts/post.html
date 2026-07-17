@@ -1,0 +1,27 @@
+---
+layout: default
+---
+
+<article class="post" style="max-width: 800px; margin: 0 auto; padding: 2rem 0 4rem;">
+  <header class="post-header" style="margin-bottom: 3rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
+    <h1 class="post-title" style="font-size: 2.5rem; font-weight: 700; color: var(--text-color); line-height: 1.2; margin-bottom: 1rem;">
+      {{ page.title }}
+    </h1>
+    <div class="post-meta-header" style="color: var(--text-secondary); font-family: 'SF Mono', monospace; font-size: 0.9rem;">
+      <!-- Automatically pulls the date you set in the Markdown file -->
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+      <span style="margin: 0 0.5rem;">|</span>
+      <span>Status: Declassified</span>
+    </div>
+  </header>
+
+  <div class="post-content" style="font-size: 1.05rem; line-height: 1.8; color: var(--text-color);">
+    {{ content }}
+  </div>
+
+  <footer class="post-footer" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+    <a href="https://rahimgujjar.github.io/research/" style="color: var(--link-color); text-decoration: none; font-weight: 600; font-family: 'SF Mono', monospace;">
+      [_return_to_archive]
+    </a>
+  </footer>
+</article>
