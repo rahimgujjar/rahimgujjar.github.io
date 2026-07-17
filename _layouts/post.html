@@ -52,32 +52,43 @@ layout: default
     <div class="post-share">
       <span class="share-label">Share:</span>
       <div class="hero-links" style="margin-top: 0; gap: 0.75rem;">
+        
         <!-- Twitter -->
-        <a href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}&text={{ page.title | url_encode }}" target="_blank">Twitter</a>
+        <a href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}&text={{ page.title | url_encode }}" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Twitter
+        </a>
+
         <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.url }}{{ page.url }}" target="_blank">LinkedIn</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.url }}{{ page.url }}" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
+          LinkedIn
+        </a>
+
         <!-- Reactive Copy Button -->
-        <a href="javascript:void(0)" onclick="copyLink(this)">Copy Link</a>
+        <a href="javascript:void(0)" onclick="copyLink(this)">
+          <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          Copy Link
+        </a>
       </div>
     </div>
 
     <!-- Navigation Buttons -->
-    <div class="hero-links" style="display: flex; justify-content: space-between; width: 100%; margin-top: 3rem;">
+    <div class="hero-links" style="display: flex; justify-content: space-between; width: 100%; margin-top: 4rem;">
       <a href="javascript:history.back()">← Back</a>
       <a href="https://rahimgujjar.github.io/research/">All Research Articles →</a>
     </div>
 
 </footer>
-</article>
 
 <script>
   function copyLink(btn) {
     navigator.clipboard.writeText(window.location.href);
-    const originalText = btn.innerText;
-    btn.innerText = "Link copied!";
+    const originalText = btn.innerHTML; // Capture the SVG + Text
+    btn.innerHTML = "Link copied!";
     btn.style.borderColor = "var(--link-color)";
     setTimeout(() => {
-      btn.innerText = originalText;
+      btn.innerHTML = originalText;
       btn.style.borderColor = "var(--border-color)";
     }, 2000);
   }
