@@ -67,16 +67,15 @@ layout: default
       <a href="https://rahimgujjar.github.io/research/">All Research Articles →</a>
     </div>
 
-  </footer>
+</footer>
 </article>
 
-<!-- Reactive Copy Script -->
 <script>
   function copyLink(btn) {
     navigator.clipboard.writeText(window.location.href);
     const originalText = btn.innerText;
     btn.innerText = "Link copied!";
-    btn.style.borderColor = "var(--link-color)"; // Optional visual feedback
+    btn.style.borderColor = "var(--link-color)";
     setTimeout(() => {
       btn.innerText = originalText;
       btn.style.borderColor = "var(--border-color)";
