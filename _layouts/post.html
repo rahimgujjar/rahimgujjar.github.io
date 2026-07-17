@@ -47,15 +47,39 @@ layout: default
   </div>
 
   <footer class="post-footer" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
-    <!-- Reusing your home screen CSS (.hero-links) for the buttons -->
-    <div class="hero-links" style="display: flex; justify-content: space-between; width: 100%; margin-top: 0;">
-      
-      <!-- Acts as a dynamic back button based on browser history -->
-      <a href="javascript:history.back()">← Back</a>
-      
-      <!-- Static link to the archive -->
-      <a href="https://rahimgujjar.github.io/research/">All Research Articles →</a>
-      
+    
+    <!-- Share Section -->
+    <div class="post-share">
+      <span class="share-label">Share:</span>
+      <div class="hero-links" style="margin-top: 0; gap: 0.75rem;">
+        <!-- Twitter -->
+        <a href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}&text={{ page.title | url_encode }}" target="_blank">Twitter</a>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.url }}{{ page.url }}" target="_blank">LinkedIn</a>
+        <!-- Reactive Copy Button -->
+        <a href="javascript:void(0)" onclick="copyLink(this)">Copy Link</a>
+      </div>
     </div>
+
+    <!-- Navigation Buttons -->
+    <div class="hero-links" style="display: flex; justify-content: space-between; width: 100%; margin-top: 3rem;">
+      <a href="javascript:history.back()">← Back</a>
+      <a href="https://rahimgujjar.github.io/research/">All Research Articles →</a>
+    </div>
+
   </footer>
 </article>
+
+<!-- Reactive Copy Script -->
+<script>
+  function copyLink(btn) {
+    navigator.clipboard.writeText(window.location.href);
+    const originalText = btn.innerText;
+    btn.innerText = "Link copied!";
+    btn.style.borderColor = "var(--link-color)"; // Optional visual feedback
+    setTimeout(() => {
+      btn.innerText = originalText;
+      btn.style.borderColor = "var(--border-color)";
+    }, 2000);
+  }
+</script>
