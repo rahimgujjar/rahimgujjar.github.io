@@ -8,12 +8,12 @@ layout: default
     
     <!-- DYNAMIC METADATA SECTION -->
     <!-- Reduced gap to 0.85rem to pull the text and pipes closer together for a cohesive line -->
-    <div class="post-meta-header" style="display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 1rem; align-items: center;">
+    <div class="post-meta-header" style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; align-items: center;">
       
       <!-- 1. Custom Status Field -->
       {% if page.status %}
-      <span style="font-family: 'SF Mono', 'Monaco', monospace; font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">
-        [ <strong>STATUS:</strong> <span style="color: var(--link-color); font-weight: 600;">{{ page.status }}</span> ]
+      <span style="font-family: 'SF Mono', 'Monaco', monospace; font-size: 0.80rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">
+        [<strong>STATUS:</strong> <span style="color: var(--link-color); font-weight: 600;">{{ page.status }}</span>]
       </span>
       {% endif %}
 
@@ -23,7 +23,7 @@ layout: default
         {% if page.status %}
         <span style="color: var(--text-secondary); opacity: 0.5;">|</span>
         {% endif %}
-      <span style="font-family: 'SF Mono', 'Monaco', monospace; font-size: 0.85rem; color: var(--text-secondary);">
+      <span style="font-family: 'SF Mono', 'Monaco', monospace; font-size: 0.80rem; color: var(--text-secondary);">
         <strong>Research Concluded:</strong> <span style="color: var(--link-color); font-weight: 600;">{{ page.research_date }}</span>
       </span>
       {% endif %}
@@ -34,7 +34,7 @@ layout: default
         {% if page.status or page.research_date %}
         <span style="color: var(--text-secondary); opacity: 0.5;">|</span>
         {% endif %}
-      <span style="font-family: 'SF Mono', 'Monaco', monospace; font-size: 0.85rem; color: var(--text-secondary);">
+      <span style="font-family: 'SF Mono', 'Monaco', monospace; font-size: 0.80rem; color: var(--text-secondary);">
         <strong>Published:</strong> <time datetime="{{ page.date | date_to_xmlschema }}" style="color: var(--link-color); font-weight: 600;">{{ page.date | date: "%-d %B %Y" }}</time>
       </span>
       {% endif %}
