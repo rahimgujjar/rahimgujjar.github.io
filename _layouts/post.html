@@ -26,7 +26,7 @@ layout: default
       <!-- 3. Standard Publish Date Field (When you uploaded it to the site) -->
       {% if page.date %}
       <span style="font-family: 'SF Mono', 'Monaco', monospace; font-size: 0.85rem; color: var(--text-secondary);">
-        <strong>Published:</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+        <strong>Published:</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
       </span>
       {% endif %}
 
