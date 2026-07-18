@@ -127,8 +127,10 @@ layout: default
           if (content.classList.contains('expanded')) {
             content.classList.remove('expanded');
             btn.innerText = 'Read more...';
-            // Scroll back up so the user doesn't lose their place
-            container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // REPLACE YOUR EXISTING SCROLL LINE WITH THIS ONE:
+            container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
           } else {
             content.classList.add('expanded');
             btn.innerText = 'Show less';
