@@ -92,8 +92,11 @@ layout: default
       btn.style.borderColor = "var(--border-color)";
     }, 2000);
   }
+</script>
 
-  // Auto-collapse large code blocks
+{% if page.enable_code_collapse %}
+<script>
+  // Auto-collapse large code blocks (Only runs if enable_code_collapse is true in YAML)
   document.addEventListener("DOMContentLoaded", function() {
     const preBlocks = document.querySelectorAll('.post-content pre');
     
@@ -138,3 +141,4 @@ layout: default
     });
   });
 </script>
+{% endif %}
