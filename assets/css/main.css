@@ -496,7 +496,7 @@ html[data-theme="dark"] #theme-icon {
 .projects-page h1 {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.1rem;
   color: var(--text-color);
 }
 
