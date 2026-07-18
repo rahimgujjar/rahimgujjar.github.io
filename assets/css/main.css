@@ -1085,7 +1085,7 @@ html[data-theme="dark"] .project-item-featured:hover {
 }
 
 .code-collapse-content {
-  max-height: 250px; /* How much is visible before clicking read more */
+  max-height: 500px; /* How much is visible before clicking read more */
   overflow: hidden;
   transition: max-height 0.4s ease-in-out;
 }
