@@ -92,4 +92,49 @@ layout: default
       btn.style.borderColor = "var(--border-color)";
     }, 2000);
   }
+
+  // Auto-collapse large code blocks
+  document.addEventListener("DOMContentLoaded", function() {
+    const preBlocks = document.querySelectorAll('.post-content pre');
+    
+    preBlocks.forEach(function(pre) {
+      // If code block is larger than 300px, make it collapsible
+      if (pre.scrollHeight > 300) {
+        // Create container wrapper
+        const container = document.createElement('div');
+        container.className = 'code-collapse-container';
+        pre.parentNode.insertBefore(container, pre);
+        
+        // Create content restriction div
+        const content = document.createElement('div');
+        content.className = 'code-collapse-content';
+        content.appendChild(pre);
+        container.appendChild(content);
+        
+        // Create overlay and button
+        const overlay = document.createElement('div');
+        overlay.className = 'code-collapse-overlay';
+        
+        const btn = document.createElement('button');
+        btn.className = 'code-collapse-btn';
+        btn.innerText = 'Read more...';
+        
+        // Toggle logic
+        btn.addEventListener('click', function() {
+          if (content.classList.contains('expanded')) {
+            content.classList.remove('expanded');
+            btn.innerText = 'Read more...';
+            // Scroll back up so the user doesn't lose their place
+            container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            content.classList.add('expanded');
+            btn.innerText = 'Show less';
+          }
+        });
+        
+        overlay.appendChild(btn);
+        container.appendChild(overlay);
+      }
+    });
+  });
 </script>
