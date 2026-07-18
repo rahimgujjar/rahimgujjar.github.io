@@ -1066,3 +1066,74 @@ html[data-theme="dark"] .project-item-featured:hover {
   font-weight: 700;
   text-transform: uppercase;
 }
+
+/* ==========================================================================
+   11. Collapsible Code Block (Read More)
+   ========================================================================== */
+.code-collapse-container {
+  position: relative;
+  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--code-bg);
+}
+
+.code-collapse-container pre {
+  margin: 0; /* Let the container handle margins */
+  border: none;
+}
+
+.code-collapse-content {
+  max-height: 250px; /* How much is visible before clicking read more */
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+}
+
+.code-collapse-content.expanded {
+  max-height: 15000px; /* Big enough to fit giant logs */
+}
+
+.code-collapse-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(transparent, var(--code-bg));
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 1rem;
+  border-radius: 0 0 8px 8px;
+  pointer-events: none;
+}
+
+.code-collapse-content.expanded + .code-collapse-overlay {
+  background: transparent;
+  position: static;
+  height: auto;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--border-color);
+}
+
+.code-collapse-btn {
+  pointer-events: auto;
+  background-color: var(--bg-color);
+  border: 1px solid var(--link-color);
+  color: var(--link-color);
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  font-size: 0.85rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  z-index: 10;
+}
+
+.code-collapse-btn:hover {
+  background-color: var(--link-color);
+  color: var(--bg-color);
+  box-shadow: 0 4px 10px var(--accent-glow);
+}
